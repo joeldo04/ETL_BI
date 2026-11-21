@@ -36,8 +36,7 @@ def transformar_homicidios(historico, actual):
     print(f"   Filas idénticas adicionales: {duplicados}")
     print("   Periodo seleccionado: Enero - Octubre")
 
-    # Se conservan los registros idénticos porque
-    # no existe un identificador único de víctima
+    # Se conservan los registros idénticos porque no existe un identificador único de víctima
 
     datos["codigo_provincia"] = normalizar_codigo(
         datos["codigo_provincia"]
