@@ -11,6 +11,9 @@ def normalizar_codigo(columna):
 
 
 def transformar_homicidios(historico, actual):
+
+    print("\n|> PROCESAMIENTO DE HOMICIDIOS")
+
     datos = pd.concat([historico, actual], ignore_index=True)
 
     datos["fecha_infraccion"] = pd.to_datetime(
@@ -28,9 +31,13 @@ def transformar_homicidios(historico, actual):
         & datos["mes"].le(10)
     ].copy()
 
-    print("Filas idénticas adicionales:", datos.duplicated().sum())
+    duplicados = datos.duplicated().sum()
 
-    # Se conservan porque no existe un identificador único de víctima.
+    print(f"   Filas idénticas adicionales: {duplicados}")
+    print("   Periodo seleccionado: Enero - Octubre")
+
+    # Se conservan los registros idénticos porque
+    # no existe un identificador único de víctima
 
     datos["codigo_provincia"] = normalizar_codigo(
         datos["codigo_provincia"]
@@ -50,10 +57,16 @@ def transformar_homicidios(historico, actual):
     if resumen["homicidios"].sum() != len(datos):
         raise ValueError("Los totales no coinciden.")
 
+    print(f"   Registros agrupados: {len(resumen)}")
+    print("   [OK] Transformación de homicidios")
+
     return resumen
 
 
 def transformar_poblacion(poblacion):
+
+    print("\n|> PROCESAMIENTO DE POBLACIÓN")
+
     datos = poblacion.loc[
         poblacion["etapa_vida"].str.strip().str.upper().eq("TOTAL")
     ].copy()
@@ -91,14 +104,52 @@ def transformar_poblacion(poblacion):
     if len(datos) != 48 or set(datos["codigo_provincia"]) != codigos_validos:
         raise ValueError("La cobertura poblacional no es la esperada.")
 
-    return datos.sort_values(
+    datos = datos.sort_values(
         ["codigo_provincia", "anio"]
     ).reset_index(drop=True)
 
+    print(f"   Provincias: {datos['codigo_provincia'].nunique()}")
+    print(f"   Registros transformados: {len(datos)}")
+    print("   [OK] Transformación poblacional")
+
+    return datos
+
 
 def transformar_datos(historico, actual, poblacion):
+
     homicidios = transformar_homicidios(historico, actual)
     proyecciones = transformar_poblacion(poblacion)
 
     return homicidios, proyecciones
 
+
+if __name__ == "__main__":
+
+    print("\n|------------- TRANSFORMACIÓN ETL -------------|")
+
+    historico, actual, poblacion = extraer_datos()
+
+    homicidios, proyecciones = transformar_datos(
+        historico, actual, poblacion
+    )
+
+    RESULTADOS.mkdir(parents=True, exist_ok=True)
+
+    homicidios.to_csv(
+        RESULTADOS / "homicidios_provinciales.csv", index=False
+    )
+
+    proyecciones.to_csv(
+        RESULTADOS / "poblacion_provincial.csv", index=False
+    )
+
+    print("\n|> RESUMEN DE HOMICIDIOS")
+
+    for anio, total in homicidios.groupby("anio")["homicidios"].sum().items():
+        print(f"   Homicidios {anio}: {total}")
+
+    print("\n|> ARCHIVOS GENERADOS")
+    print("   [OK] homicidios_provinciales.csv")
+    print("   [OK] poblacion_provincial.csv")
+
+    print("\n|---------- TRANSFORMACIÓN FINALIZADA ----------|")
