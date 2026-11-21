@@ -1,10 +1,8 @@
-<h1 align="center">ETL_BI</h1>
+<h1 align="center">Integración de datos sobre la violencia homicida en Ecuador</h1>
 
 <p align="center">
-  <strong>Integración y preparación de datos abiertos sobre la violencia homicida en Ecuador</strong><br>
   Comparación provincial · Enero–octubre de 2025 y 2026
 </p>
-
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas">
@@ -17,7 +15,7 @@
 
  
 **Asignatura:** Introducción a la Inteligencia de Negocios  
-**Docente:** Ing. Ángel Eduardo Encalada Encalada
+**Docente:** Ing. Ángel Encalada
 
 **Integrantes**
 
