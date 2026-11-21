@@ -1,0 +1,49 @@
+codigo_provincia,provincia,anio,poblacion
+01,Azuay,2025,834958
+01,Azuay,2026,839268
+02,Bolívar,2025,204351
+02,Bolívar,2026,204620
+03,Cañar,2025,237460
+03,Cañar,2026,237517
+04,Carchi,2025,177020
+04,Carchi,2026,176748
+05,Cotopaxi,2025,493382
+05,Cotopaxi,2026,497544
+06,Chimborazo,2025,487355
+06,Chimborazo,2026,486213
+07,El Oro,2025,753036
+07,El Oro,2026,757938
+08,Esmeraldas,2025,605377
+08,Esmeraldas,2026,609590
+09,Guayas,2025,4788157
+09,Guayas,2026,4835479
+10,Imbabura,2025,498140
+10,Imbabura,2026,502275
+11,Loja,2025,498457
+11,Loja,2026,499729
+12,Los Ríos,2025,978487
+12,Los Ríos,2026,988852
+13,Manabí,2025,1715057
+13,Manabí,2026,1731039
+14,Morona Santiago,2025,209875
+14,Morona Santiago,2026,213457
+15,Napo,2025,140498
+15,Napo,2026,142465
+16,Pastaza,2025,120932
+16,Pastaza,2026,122784
+17,Pichincha,2025,3294478
+17,Pichincha,2026,3316636
+18,Tungurahua,2025,581842
+18,Tungurahua,2026,584638
+19,Zamora Chinchipe,2025,118936
+19,Zamora Chinchipe,2026,120221
+20,Galápagos,2025,30265
+20,Galápagos,2026,30448
+21,Sucumbíos,2025,204121
+21,Sucumbíos,2026,203164
+22,Orellana,2025,196020
+22,Orellana,2026,199171
+23,Santo Domingo de los Tsáchilas,2025,528509
+23,Santo Domingo de los Tsáchilas,2026,533522
+24,Santa Elena,2025,406947
+24,Santa Elena,2026,410498
